@@ -1,3 +1,5 @@
+import numpy
+
 def prepMatrix(matrix):
     sums = []
     dvector = []
@@ -59,15 +61,37 @@ columnSums = sAndD[0]
 dvector = sAndD[1]
 
 normalize(rawMatrix, columnSums)
-avector = [3/14, 2/14, 5/14, 1/14, 2/14, 1/14]
-pivector = [1/6, 1/6, 1/6, 1/6, 1/6, 1/6]
+avector = [3/14, 2/14, 5/14, 1/14, 2/14, 1/14] # 1x6
+pivector = [1/6, 1/6, 1/6, 1/6, 1/6, 1/6] # 1x6
 
-r = 0
+deltas = [1, 1, 1, 1, 1, 1]
+iteration = 0
 
-while ()
+while True:
+    tempVector = numpy.multiply(alphaConst, rawMatrix) # 6x6
+    tempVector = numpy.dot(pivector, rawMatrix) # 1x6
 
-print('-----------------')
+    alphaD = numpy.multiply(alphaConst, dvector)
+    dotPi = numpy.dot(alphaD, pivector)
+    dotPi = dotPi + 0.15
+    dotArticle = numpy.multiply(dotPi, avector)
+
+    piNew = tempVector + dotArticle
+    deltas = piNew - pivector
+    converged = True
+    for tau in deltas:
+        converged = converged and (tau < epsilonConst)
+    if converged:
+        break
+    pivector = piNew
+    iteration = iteration + 1
+
+'''print('-----------------')
 print('current matrix:')
 print('-----------------')
 for row in rawMatrix:
-    print(row)
+    print(row)'''
+
+print('Iterations until converge: ' + str(iteration))
+print('--------------------------------------')
+print(pivector)
