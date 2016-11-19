@@ -42,20 +42,6 @@ def normalize(matrix, sums):
 
         cindex = cindex + 1
 
-def replaceDNodes(matrix, dvector, avector):
-    size = len(dvector)
-    cindex = 0
-
-    while cindex < size:
-        if dvector[cindex] == 1:
-            rindex = 0
-
-            while rindex < size:
-                matrix[rindex][cindex] = avector[rindex]
-                rindex = rindex + 1
-
-        cindex = cindex + 1
-
 rawMatrix = [
     [1, 0, 2, 0, 4, 3],
     [3, 0, 1, 1, 0, 0],
@@ -64,8 +50,6 @@ rawMatrix = [
     [8, 0, 3, 0, 5, 2],
     [0, 0, 0, 0, 0, 0]
 ]
-
-#editMatrix = [row[:] for row in rawMatrix]
 
 alphaConst = 0.85
 epsilonConst = 0.00001
@@ -76,9 +60,11 @@ dvector = sAndD[1]
 
 normalize(rawMatrix, columnSums)
 avector = [3/14, 2/14, 5/14, 1/14, 2/14, 1/14]
-svector = [1/6, 1/6, 1/6, 1/6, 1/6, 1/6]
+pivector = [1/6, 1/6, 1/6, 1/6, 1/6, 1/6]
 
-#replaceDNodes(rawMatrix, dvector, avector)
+r = 0
+
+while ()
 
 print('-----------------')
 print('current matrix:')
